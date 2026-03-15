@@ -26,32 +26,58 @@ if (!isset($_SESSION['db_user'])) {
                 
                 <div class="content scrollable">
                     <section>
-                        <h3>1. ¡REGLAS DE LA LIGA! 🏆</h3>
-                        <p><strong>Captura:</strong> El sistema elige un bicho al azar. Todos nacen en Nivel 1. ¡No llores si te sale un Rattata!</p>
-                        <p><strong>Entrenamiento:</strong> <code>CALL entrenar_pokemon(id);</code> Sube stats a lo loco (0-3 pts). El tope es 300.</p>
-                        <p><strong>Niveles:</strong> Si ganas, subes. Al subir, tus stats se reajustan: <code>Base + (Nivel * 3)</code>.</p>
+                        <h3>📊 MAPA DE PODER (ESQUEMA)</h3>
+                        <div style="text-align: center; margin: 10px 0;">
+                            <img src="img/db_diagram.png" alt="Database Diagram" style="width: 100%; max-width: 600px; border: 4px solid var(--gbc-screen-light); border-radius: 8px; box-shadow: 4px 4px 0 black;">
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>1. DEFINICIÓN DEL MUNDO 🌎</h3>
+                        <div class="erd-container">
+                            <div class="erd-table">
+                                <h4>entrenadores</h4>
+                                <p>- Perfil del jugador e identidad SQL.</p>
+                            </div>
+                            <div class="erd-table">
+                                <h4>especies</h4>
+                                <p>- Catálogo de Pokémon y sus stats base.</p>
+                            </div>
+                            <div class="erd-table">
+                                <h4>equipo_pokemon</h4>
+                                <p>- Instancias de tus Pokémon (id_instancia, nivel, stats actuales).</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>2. CÓDIGO DE LA LIGA 🏆</h3>
+                        <p>Usa estos procedimientos oficiales en tu Terminal:</p>
+                        <ul>
+                            <li><strong>Captura:</strong> <code>CALL capturar_pokemon();</code> (Límite: 12 Pokémon).</li>
+                            <li><strong>Entreno:</strong> <code>CALL entrenar_pokemon(id);</code> (Tope: 300 en stats).</li>
+                            <li><strong>Evolución:</strong> Tras ganar suficientes batallas, el sistema recalcula tus stats: <code>Base + (Nivel * 3)</code>.</li>
+                        </ul>
                     </section>
                     
                     <section>
-                        <h3>2. EL ARTE DE LA TORTA 👊</h3>
-                        <p><strong>Fórmula:</strong> Daño = (Atk/Def) * Nivel * Suerte * Tipos.</p>
-                        <p><strong>Tipos:</strong> ¡Usa la cabeza! Si usas Agua contra Fuego, el daño es x2. ¡No seas noob!</p>
-                        <p><strong>Duelos:</strong> <code>CALL batalla_individual_oficial(mi_id, rival_id);</code></p>
+                        <h3>3. CIENCIA DEL TORTAZO 👊</h3>
+                        <p><strong>Fórmula Real:</strong><br>
+                        <code>Daño = FLOOR((Atk / Def) * Nivel * 2 * Suerte * Tipos)</code></p>
+                        <p><strong>Velocidad:</strong> El Pokémon con más <code>velocidad_actual</code> golpea primero. ¡Si eres lento, asegúrate de tener mucha Defensa!</p>
                     </section>
 
                     <section>
-                        <h3>3. 🛠️ SÉ UN MASTER (PROGRAMA)</h3>
-                        <p>¿Vas a estar haciendo click como un mono? ¡No! Investiga cómo crear <strong>Procedures</strong> con bucles (<code>WHILE</code>) para automatizar el entrenamiento.</p>
-                        <p style="background: #000; padding: 10px; color: #0f0; border-left: 3px solid #0f0; font-family: monospace; font-size: 0.8em;">
-                            PISTA: Usa DELIMITER //, DECLARE para variables, y llama a entrenar_pokemon() dentro de un bucle.
-                        </p>
-                        <p>Usa la <strong>Terminal SQL</strong> para lanzar tus propios scripts y automatizar tu victoria.</p>
+                        <h3>4. 🛠️ TU TURNO: SÉ UN MASTER</h3>
+                        <p>Los mejores entrenadores automatizan. Crea tus propios <strong>Procedures</strong>:</p>
+                        <div style="background: rgba(0,0,0,0.8); padding: 15px; color: #0f0; border-left: 5px solid #0f0; font-family: monospace; font-size: 0.9em; margin: 10px 0;">
+                            <strong>MISIÓN:</strong> Investiga cómo usar <code>WHILE</code>, <code>DECLARE</code> y <code>SET</code> para entrenar a tus Pokémon sin mover un dedo.
+                        </div>
                     </section>
 
-                    <section style="border: 2px dashed #f00; padding: 10px; margin-top: 10px; background: rgba(255,0,0,0.1);">
-                        <h3 style="color: #f00; text-align: center;">🔥 EL DESAFÍO 🔥</h3>
-                        <p>¿Eres capaz de programar un bot que analice el ranking y machaque automáticamente a los más débiles de la otra clase?</p>
-                        <p><strong>¡Pícalos con código y demuestra quién manda!</strong></p>
+                    <section style="border: 2px dashed #f00; padding: 15px; margin-top: 10px; background: rgba(255,0,0,0.1);">
+                        <h3 style="color: #f00; text-align: center;">🔥 EL DESAFÍO FINAL 🔥</h3>
+                        <p><strong>Analiza el Historial de Combates:</strong> Busca debilidades en los Pokémon de la otra clase y programa el bot de ataque perfecto. ¡Que gane el mejor programador!</p>
                     </section>
                 </div>
             </div>
