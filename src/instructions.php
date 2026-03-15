@@ -56,7 +56,7 @@ if (!isset($_SESSION['db_user'])) {
                         <ul>
                             <li><strong>Captura:</strong> <code>CALL capturar_pokemon();</code> (Límite: 12 Pokémon).</li>
                             <li><strong>Entreno:</strong> <code>CALL entrenar_pokemon(id);</code> (Tope: 300 en stats).</li>
-                            <li><strong>Evolución:</strong> Tras ganar suficientes batallas, el sistema recalcula tus stats: <code>Base + (Nivel * 3)</code>.</li>
+                            <li><strong>Evolución:</strong> Tras ganar suficientes batallas, subes de nivel. <strong>Tus stats no suben solas</strong>, pero el nivel aumenta tu daño en combate.</li>
                         </ul>
                     </section>
                     

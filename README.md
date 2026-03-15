@@ -21,7 +21,7 @@ Esta sección explica el motor interno del juego para que puedas dominar el serv
 
 ### 📈 Lógica de Juego y Fórmulas
 - **Daño**: `Daño = FLOOR((Atk / Def) * Nivel * 2 * Suerte * Tipos)`.
-- **Level Up**: Al ganar combates subes de nivel y tus stats se recalcularán automáticamente: `Stat_Base + (Nivel * 3)`, con un tope absoluto de **300**.
+- **Level Up**: Al ganar combates subes de nivel. El nivel aumenta tu daño final según la fórmula, pero **tus estadísticas (Vida, Ataque, etc.) solo aumentan mediante el entrenamiento**.
 - **Seguridad**: Triggers internos vigilan que nadie toque tus Pokémon ni tus procedures.
 
 ---

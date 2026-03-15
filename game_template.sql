@@ -862,15 +862,7 @@ BEGIN
 
     IF v_victorias >= v_meta THEN
         SET v_nivel = v_nivel + 1; SET v_victorias = 0;
-        UPDATE equipo_pokemon 
-        SET nivel = v_nivel, victorias = v_victorias,
-            vida_actual = LEAST(v_hp_base + (v_nivel * 3), 300), 
-            ataque_actual = LEAST(v_atk_base + (v_nivel * 3), 300),
-            defensa_actual = LEAST(v_def_base + (v_nivel * 3), 300), 
-            atq_esp_actual = LEAST(v_spa_base + (v_nivel * 3), 300),
-            def_esp_actual = LEAST(v_spd_base + (v_nivel * 3), 300), 
-            velocidad_actual = LEAST(v_spe_base + (v_nivel * 3), 300)
-        WHERE id_instancia = p_id_pokemon;
+        UPDATE equipo_pokemon SET nivel = v_nivel, victorias = v_victorias WHERE id_instancia = p_id_pokemon;
     ELSE
         UPDATE equipo_pokemon SET victorias = v_victorias WHERE id_instancia = p_id_pokemon;
     END IF;
