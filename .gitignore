@@ -1,0 +1,5 @@
+pokegame-db-data/
+.test_vars/
+zrok_env/
+ssl/
+*.log

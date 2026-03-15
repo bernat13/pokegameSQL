@@ -1,0 +1,69 @@
+services:
+  db:
+    image: mariadb:latest
+    container_name: pokegamesql-db
+    environment:
+      MARIADB_ROOT_PASSWORD: 'root'
+      MARIADB_DATABASE: pokegame_admin
+      MARIADB_ROOT_HOST: '%'
+    volumes:
+      - ./init_admin.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./pokegame-db-data:/var/lib/mysql
+    ports:
+      - "3308:3306"
+    networks:
+      - pokegame-network
+    restart: always
+
+  app:
+    image: bernat13/pokegame-app:latest
+    container_name: pokegamesql-app
+    environment:
+      DB_HOST: db
+      DB_NAME: pokegame
+    depends_on:
+      - db
+    networks:
+      - pokegame-network
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    container_name: pokegamesql-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx_conf:/etc/nginx/conf.d:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - app
+    networks:
+      - pokegame-network
+    restart: always
+
+  zrok:
+    image: openziti/zrok
+    container_name: pokegamesql-zrok
+    restart: always
+    user: "root"
+    networks:
+      - pokegame-network
+    depends_on:
+      - nginx
+    volumes:
+      # Montamos la carpeta local con los certificados que generaste
+      - ./zrok_env:/mnt
+    environment:
+      - HOME=/mnt
+    # Reemplaza esto por el TOKEN CORTO (Share Token) del Paso 3
+    command: share reserved pokegamesql --headless --insecure
+
+networks:
+  pokegame-network:
+    driver: bridge
+
+volumes:
+  pokegame-db-data:
+
+
